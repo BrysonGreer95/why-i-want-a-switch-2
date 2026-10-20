@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why I Want a Switch 2</title>
+  <meta name="description" content="A tiny app, deployed on Unkey, making the case for why I should win a Nintendo Switch 2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='black'/><text x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='monospace'>S2</text></svg>" />
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --muted: rgba(255, 255, 255, 0.6);
+      --faint: rgba(255, 255, 255, 0.4);
+      --line: rgba(255, 255, 255, 0.1);
+      --line-strong: rgba(255, 255, 255, 0.2);
+      --card: rgba(255, 255, 255, 0.02);
+      --accent: #ff4554; /* Switch red, used sparingly */
+      --accent-2: #00c3e3; /* Switch blue */
+      --ok: #3ddc97;
+      --radius: 16px;
+      --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); color-scheme: dark; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; }
+    .logo-mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-size: 11px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+    }
+    .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: var(--fg); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 40px; padding: 0 18px; border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: pointer; border: 1px solid transparent; font-family: inherit;
+    }
+    .btn-primary { background: var(--fg); color: #000; }
+    .btn-primary:hover { background: rgba(255,255,255,0.85); }
+    .btn-ghost { border-color: var(--line-strong); color: var(--fg); background: rgba(255,255,255,0.03); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.4); }
+    .btn-sm { height: 34px; padding: 0 14px; font-size: 13px; }
+
+    /* Hero */
+    .hero { position: relative; padding: 120px 0 96px; text-align: center; isolation: isolate; }
+    .hero::before {
+      content: ""; position: absolute; inset: -200px 0 auto 0; height: 700px; z-index: -1;
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 30%, rgba(255,255,255,0.14), transparent 70%),
+        radial-gradient(ellipse 30% 25% at 35% 35%, rgba(255,69,84,0.12), transparent 70%),
+        radial-gradient(ellipse 30% 25% at 65% 35%, rgba(0,195,227,0.12), transparent 70%);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 30%, #000 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 30%, #000 20%, transparent 75%);
+      opacity: 0.5;
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 4px 12px 4px 6px; border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,0.04);
+      font-size: 13px; color: var(--muted);
+    }
+    .chip b {
+      font-weight: 500; color: var(--fg);
+      padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,0.1);
+      font-size: 12px;
+    }
+    .gradient {
+      background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.4));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    h1 {
+      margin: 28px auto 20px; max-width: 860px;
+      font-size: clamp(44px, 8vw, 84px); line-height: 1.02;
+      font-weight: 600; letter-spacing: -0.045em;
+    }
+    .lede { max-width: 620px; margin: 0 auto; color: var(--muted); font-size: 18px; }
+    .hero-cta { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* Console visual */
+    .console-wrap { margin: 72px auto 0; max-width: 760px; perspective: 1200px; }
+    .console {
+      position: relative; border-radius: 28px; padding: 14px;
+      display: grid; grid-template-columns: 64px 1fr 64px; gap: 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid var(--line-strong);
+      box-shadow: 0 40px 120px -30px rgba(255,255,255,0.15);
+    }
+    .joycon { border-radius: 18px; position: relative; }
+    .joycon.l { background: linear-gradient(180deg, var(--accent-2), #007f95); }
+    .joycon.r { background: linear-gradient(180deg, var(--accent), #b0202c); }
+    .joycon::before {
+      content: ""; position: absolute; left: 50%; top: 28%; width: 26px; height: 26px; transform: translate(-50%, -50%);
+      border-radius: 50%; background: #111; box-shadow: inset 0 -3px 0 rgba(255,255,255,0.08);
+    }
+    .joycon.r::before { top: 62%; }
+    .screen {
+      aspect-ratio: 16 / 9; border-radius: 10px; background: #050505;
+      border: 1px solid var(--line); overflow: hidden;
+      font-family: var(--mono); font-size: 13px; text-align: left;
+      padding: 18px 20px; color: var(--muted);
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .screen .prompt { color: var(--fg); }
+    .screen .ok { color: var(--ok); }
+    .screen .dim { color: var(--faint); }
+    .cursor { display: inline-block; width: 8px; height: 15px; background: var(--fg); vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (max-width: 640px) {
+      .console { grid-template-columns: 28px 1fr 28px; border-radius: 20px; padding: 10px; }
+      .joycon { border-radius: 12px; }
+      .joycon::before { width: 14px; height: 14px; }
+      .screen { font-size: 10px; padding: 10px 12px; }
+    }
+
+    /* Sections */
+    section { padding: 96px 0; border-top: 1px solid var(--line); }
+    .eyebrow { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); }
+    h2 { margin-top: 12px; font-size: clamp(32px, 5vw, 48px); line-height: 1.1; font-weight: 600; letter-spacing: -0.035em; }
+    .section-lede { margin-top: 16px; max-width: 560px; color: var(--muted); }
+
+    .grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .card { padding: 32px; background: var(--card); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 0.25s; }
+    .card:hover { background: rgba(255,255,255,0.04); }
+    .card .num { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+    .card h3 { margin-top: 20px; font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+    .card p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+    .grid .card:nth-child(3n) { border-right: 0; }
+    .grid .card:nth-last-child(-n+3) { border-bottom: 0; }
+    .card.wide { grid-column: span 2; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .card, .card.wide { grid-column: auto; border-right: 0; }
+      .grid .card:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
+      .grid .card:last-child { border-bottom: 0; }
+    }
+
+    /* Random reason / API demo */
+    .split { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+    @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); overflow: hidden; display: flex; flex-direction: column; }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--faint); }
+    .dots { display: flex; gap: 6px; }
+    .dots i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+    pre { white-space: pre-wrap; word-break: break-word; margin: 0; padding: 20px; font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--muted); overflow-x: auto; flex: 1; }
+    .k { color: #fff; } .s { color: #ffd479; } .n { color: var(--accent-2); }
+    .reason-body { padding: 28px; display: flex; flex-direction: column; gap: 16px; flex: 1; justify-content: space-between; }
+    .reason-body h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.03em; }
+    .reason-body p { color: var(--muted); }
+
+    /* Stats */
+    .stats { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .stat { padding: 28px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat .v { font-size: 36px; font-weight: 600; letter-spacing: -0.04em; }
+    .stat .l { margin-top: 4px; font-size: 13px; color: var(--faint); }
+    @media (max-width: 860px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+
+    /* CTA */
+    .cta { text-align: center; position: relative; isolation: isolate; }
+    .cta::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: radial-gradient(ellipse 40% 60% at 50% 100%, rgba(255,255,255,0.1), transparent 70%);
+    }
+    .cta h2 { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .cta .hero-cta { margin-top: 28px; }
+
+    footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--faint); font-size: 13px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); }
+    .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); }
+
+    .fade { opacity: 0; transform: translateY(12px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .fade { opacity: 1; transform: none; transition: none; } .cursor { animation: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="logo" href="#"><span class="logo-mark">S2</span> why-i-want-a-switch-2</a>
+      <div class="nav-links">
+        <a href="#reasons">Reasons</a>
+        <a href="#api">API</a>
+        <a href="#stats">Stats</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="#cta">Pick me</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="chip"><b>All Things Open 2026</b> Deployed on Unkey &rarr;</span>
+      <h1 class="gradient">Ship the app.<br />Win the Switch&nbsp;2.</h1>
+      <p class="lede">A tiny app with a single, very important job: convincing the Unkey team that I am the right person to take home a Nintendo Switch&nbsp;2.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#reasons">Read the pitch</a>
+        <a class="btn btn-ghost" href="/api/reasons">GET /api/reasons</a>
+      </div>
+
+      <div class="console-wrap fade">
+        <div class="console" aria-hidden="true">
+          <div class="joycon l"></div>
+          <div class="screen" id="screen">
+            <span class="prompt">$ unkey deploy --project switch-2</span>
+            <span class="dim">&#9656; building image&hellip;</span>
+            <span class="dim">&#9656; pushing to registry&hellip;</span>
+            <span class="ok">&#10003; deployment active</span>
+            <span class="ok">&#10003; health check passed</span>
+            <span class="prompt">$ play mario-kart-world <span class="cursor"></span></span>
+          </div>
+          <div class="joycon r"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="reasons">
+    <div class="wrap">
+      <p class="eyebrow">The pitch</p>
+      <h2 class="gradient">Five reasons, zero downtime.</h2>
+      <p class="section-lede">Every good deploy needs a clear spec. Here's mine.</p>
+      <div class="grid" id="reason-grid"></div>
+    </div>
+  </section>
+
+  <section id="api">
+    <div class="wrap">
+      <p class="eyebrow">It's a real app</p>
+      <h2 class="gradient">Ask the API why.</h2>
+      <p class="section-lede">This page is served by a zero-dependency Node server running in a container on Unkey. The reasons come from a live JSON endpoint.</p>
+      <div class="split">
+        <div class="panel">
+          <div class="panel-head"><span class="dots"><i></i><i></i><i></i></span><span>terminal</span></div>
+<pre><span class="k">curl</span> <span class="s">/api/reasons/random</span>
+
+<span id="json-out">{
+  <span class="s">"loading"</span>: <span class="n">true</span>
+}</span></pre>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span>random reason</span><span id="reason-id">#0</span></div>
+          <div class="reason-body">
+            <div>
+              <h3 id="reason-title">Fetching&hellip;</h3>
+              <p id="reason-text">One sec, asking the server.</p>
+            </div>
+            <div><button class="btn btn-ghost btn-sm" id="reroll" type="button">Another reason &#8635;</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats">
+    <div class="wrap">
+      <p class="eyebrow">By the numbers</p>
+      <h2 class="gradient">Production ready.</h2>
+      <div class="stats">
+        <div class="stat"><div class="v">0</div><div class="l">npm dependencies</div></div>
+        <div class="stat"><div class="v">1</div><div class="l">Dockerfile</div></div>
+        <div class="stat"><div class="v" id="uptime">&mdash;</div><div class="l">seconds of uptime</div></div>
+        <div class="stat"><div class="v">&infin;</div><div class="l">hours of Mario Kart planned</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="cta">
+    <div class="wrap">
+      <p class="eyebrow">Final answer</p>
+      <h2 class="gradient">Deployed with Unkey.<br />Played on a Switch&nbsp;2.</h2>
+      <p class="section-lede" style="margin-left:auto;margin-right:auto">Thanks to the Unkey team for the challenge and for making deploys this easy. I'd love to be the one walking away with the Switch.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://www.unkey.com" target="_blank" rel="noopener">Check out Unkey</a>
+        <a class="btn btn-ghost" href="/health">GET /health</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>why-i-want-a-switch-2 &middot; All Things Open 2026</span>
+      <span class="status"><i></i> <span id="status-text">All systems operational</span></span>
+    </div>
+  </footer>
+
+  <script>
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const pad = (n) => String(n).padStart(2, "0");
+
+    function highlight(obj) {
+      return esc(JSON.stringify(obj, null, 2))
+        .replace(/(&quot;[^&]*?&quot;)(\s*:)/g, '<span class="k">$1</span>$2')
+        .replace(/:\s(&quot;.*?&quot;)/g, ': <span class="s">$1</span>')
+        .replace(/:\s(\d+)/g, ': <span class="n">$1</span>');
+    }
+
+    async function loadReasons() {
+      try {
+        const { reasons } = await (await fetch("/api/reasons")).json();
+        document.getElementById("reason-grid").innerHTML = reasons
+          .map((r, i) => `<div class="card"><div class="num">${pad(r.id)}</div><h3>${esc(r.title)}</h3><p>${esc(r.body)}</p></div>`)
+          .join("") + `<div class="card"><div class="num">06</div><h3>Your move, Unkey</h3><p>All checks green. Awaiting approval.</p></div>`;
+      } catch {
+        document.getElementById("reason-grid").innerHTML = `<div class="card"><h3>Couldn't reach the API</h3><p>Refresh to try again.</p></div>`;
+      }
+    }
+
+    async function reroll() {
+      try {
+        const r = await (await fetch("/api/reasons/random", { cache: "no-store" })).json();
+        document.getElementById("json-out").innerHTML = highlight(r);
+        document.getElementById("reason-id").textContent = "#" + pad(r.id);
+        document.getElementById("reason-title").textContent = r.title;
+        document.getElementById("reason-text").textContent = r.body;
+      } catch {
+        document.getElementById("reason-title").textContent = "The API is taking a nap";
+      }
+    }
+
+    async function health() {
+      try {
+        const h = await (await fetch("/health", { cache: "no-store" })).json();
+        document.getElementById("uptime").textContent = h.uptimeSeconds.toLocaleString();
+      } catch {
+        document.getElementById("status-text").textContent = "Degraded";
+      }
+    }
+
+    document.getElementById("reroll").addEventListener("click", reroll);
+    loadReasons(); reroll(); health(); setInterval(health, 10000);
+
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")), { threshold: 0.15 });
+    document.querySelectorAll(".fade").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

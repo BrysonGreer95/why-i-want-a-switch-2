@@ -1,0 +1,13 @@
+{
+  "name": "why-i-want-a-switch-2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny Unkey-styled app making the case for why I should win a Nintendo Switch 2.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
