@@ -14,7 +14,9 @@ node server.js            # http://localhost:8080
 docker build -t switch-2 . && docker run -p 8080:8080 switch-2
 ```
 
-## Deploy to Unkey
+## Deploy to Unkey Compute
+
+Contest entry: deploy, then submit the live URL, your Workspace ID (`ws_...`, from the dashboard), a short description, name and email at https://www.unkey.com/all-things-open before Fri Oct 23, 2026, 11:59pm ET.
 
 Option A — from GitHub (easiest, no terminal):
 
